@@ -56,7 +56,8 @@ function isSupported() {
 	if (!isWebGLSupportedCached(true)) {
 		return {
 			supported: false,
-			reason: 'WebGL not supported'
+			reason: 'WebGL not supported',
+			gpuData: unmaskedInfo
 		}
 	}
 
