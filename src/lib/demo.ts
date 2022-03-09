@@ -8,6 +8,11 @@ const createScene = () => {
 	renderer.setClearColor(0xffffff, 0)
 	renderer.setSize(window.innerWidth, window.innerHeight)
 	document.getElementById('canvas-div').appendChild(renderer.domElement)
+	window.addEventListener('resize', () => {
+		camera.aspect = window.innerWidth / window.innerHeight
+		camera.updateProjectionMatrix()
+		renderer.setSize(window.innerWidth, window.innerHeight)
+	})
 
 	var geometry = new THREE.BoxGeometry(1, 1, 1)
 	var material = new THREE.MeshBasicMaterial({ color: 0x00a900 })
