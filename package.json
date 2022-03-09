@@ -1,0 +1,55 @@
+{
+	"name": "next-ui",
+	"version": "0.0.1",
+	"description": "Next.js template with Typescript, TailwindCSS, and Vercel.",
+	"author": "Monogram",
+	"private": true,
+	"license": "UNLICENSED",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/monogramdesign/next-ui.git"
+	},
+	"bugs": {
+		"url": "https://github.com/monogramdesign/next-ui/issues"
+	},
+	"contributors": [
+		{
+			"name": "Liam Davis",
+			"email": "liam@monogram.io"
+		}
+	],
+	"main": "pages/index.js",
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"postbuild": "next-sitemap --config next-sitemap.config.js",
+		"export": "cross-env IS_EXPORT=true yarn build && cross-env IS_EXPORT=true next export",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"isomorphic-dompurify": "^0.18.0",
+		"next": "12.0.10",
+		"next-seo": "^5.1.0",
+		"preact": "10.6.5",
+
+		"react": "17.0.2",
+		"react-dom": "17.0.2"
+	},
+	"devDependencies": {
+
+		"@tailwindcss/typography": "^0.5.1",
+		"@types/node": "^17.0.16",
+		"@types/react": "^17.0.39",
+		"autoprefixer": "^10.4.2",
+		"cross-env": "^7.0.3",
+		"eslint": "8.8.0",
+		"eslint-config-next": "12.0.10",
+		"next-sitemap": "^2.1.13",
+		"postcss": "^8.4.6",
+		"prettier": "^2.5.1",
+		"sass": "^1.49.7",
+		"tailwindcss": "^3.0.19",
+		"typescript": "^4.5.5"
+	}
+}
