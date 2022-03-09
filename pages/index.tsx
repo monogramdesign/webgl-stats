@@ -28,9 +28,12 @@ const Home = () => {
 			<div className="container mx-auto z-10">
 				<h1 className="text-4xl font-semibold mb-8">{data?.info}</h1>
 				<p className="text-lg">
-					{data?.gpuData.renderer} <br /> {data?.gpuData.vendor}
+					<p>{data?.gpuData.renderer}</p>
+					<p>{data?.gpuData.vendor}</p>
+					<p className="hidden" id="motion-reduce-text">
+						Prefers Reduced Motion
+					</p>
 				</p>
-				<p className="text-sm mt-4"></p>
 			</div>
 
 			{/* Canvas that's used to check if WebGL is supported */}

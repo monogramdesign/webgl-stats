@@ -9,5 +9,11 @@ body {
 	@apply contents;
 }
 
+@media (prefers-reduced-motion) {
+	#motion-reduce-text {
+		display: block;
+	}
+}
+
 @tailwind components;
 @tailwind utilities;
