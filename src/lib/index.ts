@@ -1,5 +1,7 @@
 //@ts-nocheck
 
+import { stringify } from 'querystring'
+
 export default isSupported
 
 function getUnmaskedInfo(gl) {
@@ -17,6 +19,15 @@ function getUnmaskedInfo(gl) {
 	return unMaskedInfo
 }
 
+export interface DataType {
+	status: string
+	info: string
+	gpuData: {
+		renderer: string
+		vendor: string
+	}
+}
+
 /**
  * Test if a browser supporsts WebGL.
  */
@@ -31,51 +42,41 @@ function isSupported() {
 	if (unmaskedRenderer.toUpperCase().includes('SwiftShader'.toUpperCase())) {
 		// Swift Shader is a CPU based renderer, so we don't want to use it
 		return {
-			supported: false,
-			reason: 'Swift Shader is not supported',
+			status: 'warning',
+			info: 'CPU-based GPU renderer detected.',
 			gpuData: unmaskedInfo
 		}
 	}
 
 	if (!isBrowser()) {
 		return {
-			supported: false,
-			reason: 'Not a browser',
+			status: 'error',
+			info: 'Not a Browser',
 			gpuData: unmaskedInfo
 		}
 	}
 
 	if (!isArrayBufferSupported()) {
 		return {
-			supported: false,
-			reason: 'ArrayBuffer not supported',
+			status: 'error',
+			info: 'ArrayBuffer Not Supported',
 			gpuData: unmaskedInfo
 		}
 	}
 
-	if (!isWebGLSupportedCached(true)) {
+	if (!isWebGLSupported(true)) {
 		return {
-			supported: false,
-			reason: 'WebGL not supported',
+			status: 'warning',
+			info: 'WebGL Not Supported',
 			gpuData: unmaskedInfo
 		}
 	}
 
 	return {
-		supported: true,
+		status: 'success',
+		info: 'WebGL Supported',
 		gpuData: unmaskedInfo
 	}
-}
-
-var isWebGLSupportedCache = {}
-function isWebGLSupportedCached(failIfMajorPerformanceCaveat) {
-	if (isWebGLSupportedCache[failIfMajorPerformanceCaveat] === undefined) {
-		isWebGLSupportedCache[failIfMajorPerformanceCaveat] = isWebGLSupported(
-			failIfMajorPerformanceCaveat
-		)
-	}
-
-	return isWebGLSupportedCache[failIfMajorPerformanceCaveat]
 }
 
 isSupported.webGLContextAttributes = {
