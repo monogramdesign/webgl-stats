@@ -6,11 +6,7 @@ type MainLayoutProps = { children: ReactNode }
 const MainLayout = ({ children }: MainLayoutProps) => {
 	return (
 		<>
-			<Nav />
-
-			<main>{children}</main>
-
-			<Footer />
+			<main className="contents">{children}</main>
 		</>
 	)
 }
